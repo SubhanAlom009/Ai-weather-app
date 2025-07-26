@@ -13,6 +13,8 @@ function getWeatherBackground(condition) {
       return "from-yellow-200 to-orange-300";
     case "clouds":
       return "from-gray-300 to-gray-500";
+    case "haze":
+      return "from-zinc-100 to-zinc-300";
     case "rain":
     case "drizzle":
       return "from-blue-400 to-gray-600";
