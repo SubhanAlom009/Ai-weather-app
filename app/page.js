@@ -5,6 +5,8 @@ import WeatherChatbot from "@/components/WeatherChatbot";
 
 // Utility: Change background based on weather condition
 function getWeatherBackground(condition) {
+  console.log("Weather condition:", condition); // Debugging
+
   if (!condition) return "from-blue-200 to-purple-300";
   switch (condition.toLowerCase()) {
     case "clear":
