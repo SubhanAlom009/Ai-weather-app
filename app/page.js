@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import WeatherChatbot from "@/components/WeatherChatbot";
 
 // Utility: Change background based on weather condition
 function getWeatherBackground(condition) {
@@ -140,27 +141,29 @@ export default function Home() {
 
       {/* Hourly Forecast */}
       {!loading && forecast.length > 0 && (
-        <div className="w-full max-w-5xl mb-10">
+        <div className="w-full max-w-5xl mb-10 mx-auto">
           <h3 className="text-xl font-bold mb-4 text-center">Next Few Hours</h3>
-          <div className="flex overflow-x-auto space-x-4 pb-2 px-1">
-            {forecast.slice(0, 8).map((item, index) => (
-              <div
-                key={index}
-                className="bg-white/20 backdrop-blur-md rounded-lg p-4 min-w-[100px] text-center shadow-md"
-              >
-                <p className="text-sm font-medium">
-                  {new Date(item.dt * 1000).getHours()}:00
-                </p>
-                <Image
-                  width={40}
-                  height={40}
-                  src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
-                  alt="hourly icon"
-                  className="mx-auto"
-                />
-                <p className="font-bold">{Math.round(item.main.temp)}°C</p>
-              </div>
-            ))}
+          <div className="w-full overflow-x-auto">
+            <div className="flex justify-center space-x-4 pb-2 px-1 w-fit mx-auto min-w-full">
+              {forecast.slice(0, 8).map((item, index) => (
+                <div
+                  key={index}
+                  className="bg-white/20 backdrop-blur-md rounded-lg p-4 min-w-[100px] text-center shadow-md"
+                >
+                  <p className="text-sm font-medium">
+                    {new Date(item.dt * 1000).getHours()}:00
+                  </p>
+                  <Image
+                    width={40}
+                    height={40}
+                    src={`https://openweathermap.org/img/wn/${item.weather[0].icon}.png`}
+                    alt="hourly icon"
+                    className="mx-auto"
+                  />
+                  <p className="font-bold">{Math.round(item.main.temp)}°C</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       )}
@@ -199,6 +202,7 @@ export default function Home() {
       )}
 
       <p className="text-xs text-white/70">Powered by OpenWeatherMap</p>
+      <WeatherChatbot weatherData={weather} />
     </div>
   );
 }
